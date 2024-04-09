@@ -28,7 +28,7 @@
         </ul>
       </div>
       <div class="col-md-6 text-center">
-        <img src="/logo.png" alt="Twoje Zdjęcie" class="img-fluid">
+        <img src="/logo.png" alt="logo" class="img-fluid">
       </div>
     </div>
   </div>
