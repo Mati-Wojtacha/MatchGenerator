@@ -2,12 +2,12 @@
   <div>
     <h5>Lista graczy:</h5>
     <button class="btn btn-secondary" @click="toggleList">Pokaż/ukryj listę</button>
-    <div style="margin: 10px;">
+    <div style="margin-top: 10px;">
     <ul v-if="showList" >
       <p v-for="(player, index) in playerNames" :key="index">
         {{ player }}      
-        <button type="button" class="btn btn-secondary" @click="$emit('edit-player', index)">Edytuj</button>
-        <button type="button" class="btn btn-danger" @click="$emit('delete-player', index)">Usuń</button>
+        <button type="button" class="btn btn-secondary" @click="$emit('edit-player', index)"><i class="fas fa-edit"></i></button>
+        <button type="button" class="btn btn-danger" @click="$emit('delete-player', index)"><i class="fas fa-trash"></i></button>
       </p>
     </ul>
     </div>

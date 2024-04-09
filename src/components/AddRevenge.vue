@@ -1,6 +1,6 @@
 <template>
   <button class="btn btn-info" @click="addRevenge" :disabled="isRevenge">
-    <i class="fas fa-sync-alt"></i> Dodaj rewanże
+    <i class="fas fa-sync-alt"></i><br>Dodaj<br> rewanże
   </button>
 </template>
 

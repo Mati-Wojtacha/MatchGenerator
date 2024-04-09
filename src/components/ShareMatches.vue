@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <button class="btn" @click="generatePDF"><i class="fas fa-file-pdf"></i> Generuj PDF</button>
-    <button class="btn" @click="sharePDF"><i class="fas fa-share-square"></i> Udostępnij plik PDF</button>
-  </div>
-
+    <button  class="btn btn-info" @click="generatePDF"><i class="fas fa-file-pdf"></i><br> Generuj<br> plik PDF</button>
+    <button class="btn btn-info" @click="sharePDF"><i class="fas fa-share-square"></i> <br> Udostępnij<br> plik PDF</button>
 </template>
 <script>
 import pdfMake from 'pdfmake/build/pdfmake';

@@ -9,7 +9,7 @@
           </button>
         </div>
         <a class="mr-auto text-center mx-auto" href="#">
-          <img src="/logo.png" height="50" id="logo" alt="logo">
+          <img :src="require('@/../public/logo.png')"  height="50" id="logo" alt="logo">
         </a>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">

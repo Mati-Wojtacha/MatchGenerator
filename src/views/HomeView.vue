@@ -10,28 +10,27 @@
     </div>
     <div style="text-align: left">Wpisz ich nazwy</div>
   </div>
+
   <div class="container text-center">
-    <div class="row text-center justify-content-center">
-      <div class="col text-center justify-content-center">
-        <br>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
         <form @submit.prevent="fetchData">
           <AddPlayerForm v-if="isAddPlayerFormVisible" @add-player="addPlayer"/>
-          <input v-else class="form-control" type="number" min="0" max="12" id="numberOfPlayers"
-                 v-model="numberOfPlayers" required
-                 @input="handleInput($event)" style="flex: 1; margin-right: 1rem;" placeholder="Liczba graczy"/>
-          <button style="margin-top: 1rem;" class="btn btn-primary ml-2" type="submit"
-                  :disabled="playerNames.length < 2">Generuj kombinacje
-          </button>
+          <input v-else class="form-control my-2" type="number" min="0" max="12" id="numberOfPlayers"
+                 v-model="numberOfPlayers" required @input="handleInput($event)"
+                 placeholder="Liczba graczy"/>
+          <button class="btn btn-primary mt-3" type="submit" :disabled="playerNames.length < 2">Generuj kombinacje</button>
         </form>
-        <div v-if="error">{{ error }}</div>
+        <div v-if="error" class="mt-2">{{ error }}</div>
       </div>
 
-      <div class="col">
-        <PlayerList ref="playerList" :playerNames="playerNames" @edit-player="editPlayer" @delete-player="deletePlayer"
-                    style="margin-top: 1rem;"/>
+      <div class="col-md-6 mt-4 mt-md-0">
+        <PlayerList ref="playerList" :playerNames="playerNames" @edit-player="editPlayer" @delete-player="deletePlayer"/>
       </div>
     </div>
   </div>
+
+
   <div class="container" ref="pdfContent">
     <div class="row">
       <div class="col-md-6 col-lg-6 order-2 order-md-1">
@@ -43,9 +42,10 @@
       <div class="col-md-6 col-lg-6 order-1 order-md-2">
         <div v-if="data">
           <Summary :data="data"></Summary>
-          <AddRevenge :data="data" :isRevenge="isRevenge" @updateData="handleUpdateData"/>
-          <br>
-          <ShareMatches :length="data.length"/>
+          <div class="text-center">
+            <AddRevenge :data="data" :isRevenge="isRevenge" @updateData="handleUpdateData"/>
+            <ShareMatches :length="data.length"/>
+          </div>
         </div>
       </div>
     </div>
@@ -154,7 +154,7 @@ export default {
     ,
     deletePlayer(index) {
       this.playerNames.splice(index, 1);
-      if(this.error!==null) this.error = null;
+      if (this.error !== null) this.error = null;
     }
     ,
   }
