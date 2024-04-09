@@ -1,6 +1,6 @@
 # TeamAllocation
 
-A Application that distribute people into two teams and ensure that each person plays with every other person at least once. The application can be built using the Vue.js framework.
+A simple app that divides people into two teams and ensures that each person playing on the team plays against another once, creating a unique match for each person. The application was built based on the Vue.js framework.
 
 # app
 
