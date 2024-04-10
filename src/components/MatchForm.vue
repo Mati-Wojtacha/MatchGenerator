@@ -5,7 +5,7 @@
         <button v-if="item.isRevenge" class="btn btn-danger" @click="deleteMatch(item)"><i class="fas fa-trash"></i></button>&nbsp;
         <h5>Mecz {{ item.id }}:</h5>
       </div>
-      <table :id="`match-table-${item.id}`" style="margin-bottom: 20px;">
+      <table :id="`match-table`" style="margin-bottom: 20px;">
         <thead>
         <tr>
           <th>1 drużyna</th>
@@ -45,14 +45,8 @@
 
 <script>
 import {blockNegativeNumbersAndText} from '@/functions/BlockNumbersAndText';
-import index from "vuex";
 
 export default {
-  computed: {
-    index() {
-      return index
-    }
-  },
   props: ["data"],
   data() {
     return {

@@ -9,11 +9,10 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default {
-  props: ["length"],
 
   methods: {
     generatePDF() {
-      this.generateFilePDF(this.length).open();
+      this.generateFilePDF().open();
     },
     async sharePDF() {
       const PDF = this.generateFilePDF(this.length);
@@ -74,7 +73,7 @@ export default {
       return body
     },
 
-    generateFilePDF(lengthData) {
+    generateFilePDF() {
       const docDefinition = {
         pageSize: 'A4',
         pageMargins: [45, 30, 45, 30 ],
@@ -96,11 +95,11 @@ export default {
           },
         });
       }
+      const tableElements = document.querySelectorAll("#match-table");
 
-      for (let i = 0; i < lengthData; i++) {
-        const tableElementId = `match-table-${i + 1}`;
-        const originalTableElement = document.getElementById(tableElementId);
-
+      for (let i = 0; i < tableElements.length; i++) {
+        const originalTableElement = tableElements[i];
+        if(!originalTableElement) continue;
         const tableElement = originalTableElement.cloneNode(true);
         const inputs = tableElement.querySelectorAll('input[type="number"]');
         inputs.forEach(input => {

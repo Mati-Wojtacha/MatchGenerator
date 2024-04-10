@@ -44,7 +44,7 @@
           <Summary :data="data"></Summary>
           <div class="text-center">
             <AddRevenge :data="data" :isRevenge="isRevenge" @updateData="handleUpdateData"/>
-            <ShareMatches :length="data.length"/>
+            <ShareMatches/>
           </div>
         </div>
       </div>
