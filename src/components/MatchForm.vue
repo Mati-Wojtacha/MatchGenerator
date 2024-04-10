@@ -28,7 +28,7 @@
         </tr>
         <tr>
           <td colspan="2">
-          <label :for="`team2-${item.id}`" class="form-label">Punkty drużyny 2:&nbsp </label>
+          <label :for="`team2-${item.id}`" class="form-label">Punkty drużyny 2:&nbsp</label>
             <input :id="`team2-${item.id}`" type="number" min="0" v-model="item.secondPoints"
                    @input="handleInputChange($event)">
           </td>

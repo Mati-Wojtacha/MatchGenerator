@@ -91,7 +91,7 @@ export default {
       if (summaryTableElement) {
         docDefinition.content.push({
           table: {
-            widths: ['*', '*', '*', '*', '*', '*'],
+            widths: ['*', 'auto', 'auto', 'auto', 'auto', 'auto'],
             body: this.getTableData(summaryTableElement)
           },
         });
@@ -104,7 +104,7 @@ export default {
         const tableElement = originalTableElement.cloneNode(true);
         const inputs = tableElement.querySelectorAll('input[type="number"]');
         inputs.forEach(input => {
-          const value = input.value;
+          const value = input.value === '' ? '0' : input.value;
           const textNode = document.createTextNode(value);
           const parent = input.parentNode;
           parent.replaceChild(textNode, input);
