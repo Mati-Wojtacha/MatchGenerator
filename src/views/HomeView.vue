@@ -16,7 +16,7 @@
       <div class="col-md-6">
         <form @submit.prevent="fetchData">
           <AddPlayerForm v-if="isAddPlayerFormVisible" @add-player="addPlayer"/>
-          <input v-else class="form-control my-2" type="number" min="0" max="12" id="numberOfPlayers"
+          <input v-else class="form-control mt-2" type="number" min="0" max="12" id="numberOfPlayers"
                  v-model="numberOfPlayers" required @input="handleInput($event)"
                  placeholder="Liczba graczy"/>
           <button class="btn btn-primary mt-3" type="submit" :disabled="playerNames.length < 2">Generuj kombinacje</button>
