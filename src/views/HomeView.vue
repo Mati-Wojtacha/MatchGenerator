@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-md-6 col-lg-6 order-2 order-md-1">
         <div v-if="data">
-          <MatchForm style="height: 95vh;" :data="data"></MatchForm>
+          <MatchForm style="height: 95vh;" :data="data" @changeIsRevenge="handeUpdateRevenge"></MatchForm>
         </div>
       </div>
 
@@ -86,6 +86,9 @@ export default {
     changeIsPlayerForm() {
       this.numberOfPlayers = null;
       this.playerNames = [];
+    },
+    handeUpdateRevenge(isRevenge) {
+      this.isRevenge = isRevenge;
     },
     handleUpdateData(newData, isRevenge) {
       this.data = newData;
@@ -146,7 +149,14 @@ export default {
         if (this.playerNames.includes(newName)) {
           this.error = "Gracz o takiej nazwie już istnieje.";
         } else {
+          const oldName = this.playerNames[index];
           this.playerNames[index] = newName;
+          if(this.data !== null) {
+            this.data.forEach(match => {
+              match.firstHalf = match.firstHalf.map(player => player === oldName ? newName : player);
+              match.secondHalf = match.secondHalf.map(player => player === oldName ? newName : player);
+            });
+          }
           this.error = null;
         }
       }
