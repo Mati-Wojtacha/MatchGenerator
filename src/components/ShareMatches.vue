@@ -38,7 +38,6 @@ export default {
         fillColor: '#04AA6D',
         color: 'white',
         fontSize: 13,
-
       }));
 
       body.push(headers);
@@ -57,7 +56,6 @@ export default {
             bold: cell.hasAttribute('colspan') && parseInt(cell.getAttribute('colspan'), 10) > 1,
             color: cell.hasAttribute('colspan') && parseInt(cell.getAttribute('colspan'), 10) > 1 ? 'white' : 'black',
             fontSize: cell.hasAttribute('colspan') && parseInt(cell.getAttribute('colspan'), 10) > 1 ? '13' : '12',
-
           };
 
           rowData.push(cellData);
@@ -78,30 +76,29 @@ export default {
 
     generateFilePDF(lengthData) {
       const docDefinition = {
+        pageSize: 'A4',
+        pageMargins: [45, 30, 45, 30 ],
         content: [
           {
             text: 'Zestawienie punktowe graczy:',
             fontSize: 16,
             bold: true,
-            margin: [20, 5, 20, 5]
+            margin: [5, 5, 5, 5]
           },
         ]
       };
       const summaryTableElement = document.getElementById('summary-table');
       if (summaryTableElement) {
         docDefinition.content.push({
-          bold: false, fontSize: 0, text: "",
           table: {
-            widths: ['*', 'auto', 'auto', 'auto', 'auto', 'auto'],
-
+            widths: ['*', '*', '*', '*', '*', '*'],
             body: this.getTableData(summaryTableElement)
           },
-          margin: [20, 5, 20, 5]
         });
       }
 
       for (let i = 0; i < lengthData; i++) {
-        const tableElementId = `myTable-${i + 1}`;
+        const tableElementId = `match-table-${i + 1}`;
         const originalTableElement = document.getElementById(tableElementId);
 
         const tableElement = originalTableElement.cloneNode(true);
@@ -120,7 +117,7 @@ export default {
             text: `Wyniki z meczu ${i + 1}:`,
             fontSize: 12,
             bold: true,
-            margin: [20, 10, 20, 0]
+            margin: [5, 15, 5, 5]
           });
 
           docDefinition.content.push({
@@ -128,7 +125,6 @@ export default {
               widths: ['*', '*'],
               body: tableData
             },
-            margin: [20, 5, 20, 5]
           });
         }
       }

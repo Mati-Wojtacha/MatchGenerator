@@ -3,7 +3,7 @@
     <div v-for="item in data" :key="item.id" >
       <h5>Mecz {{ item.id }}:</h5>
 
-      <table :id="`myTable-${item.id}`">
+      <table :id="`match-table-${item.id}`">
         <thead>
         <tr>
           <th>1 drużyna</th>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {blockNegativeNumbersAndText} from '../functions/BlockNumbersAndText';
+import {blockNegativeNumbersAndText} from '@/functions/BlockNumbersAndText';
 
 export default {
   props: ["data"],
