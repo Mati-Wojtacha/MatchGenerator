@@ -1,14 +1,15 @@
 <template>
+<!--  <p>{{ $t('message.hello') }}</p>-->
   <div class="d-flex justify-content-center">
-    <label for="teamId" style="font-weight: bold; margin-bottom: 0.5rem;">Podziel osoby na 2 drużyny:</label>
+    <label for="teamId" style="font-weight: bold; margin-bottom: 0.5rem;">{{ $t('generator.title') }}</label>
   </div>
   <div class="d-flex justify-content-center">
-    <div style="text-align: right">Podaj liczbę graczy</div>
+    <div style="text-align: right">{{ $t('generator.right') }}</div>
     <div class="switch" style="min-width: 50px; margin-right: 10px; margin-left: 10px;">
       <input type="checkbox" id="switchView" v-model="isAddPlayerFormVisible" @input="changeIsPlayerForm()">
       <label for="switchView" class="switch-label"></label>
     </div>
-    <div style="text-align: left">Wpisz ich nazwy</div>
+    <div style="text-align: left">{{ $t('generator.left') }}</div>
   </div>
 
   <div class="container text-center">
@@ -18,8 +19,8 @@
           <AddPlayerForm v-if="isAddPlayerFormVisible" @add-player="addPlayer"/>
           <input v-else class="form-control mt-2" type="number" min="0" max="12" id="numberOfPlayers"
                  v-model="numberOfPlayers" required @input="handleInput($event)"
-                 placeholder="Liczba graczy"/>
-          <button class="btn btn-primary mt-3" type="submit" :disabled="playerNames.length < 2">Generuj kombinacje</button>
+                 :placeholder="$t('generator.inputNumber_placeholder')" />
+          <button class="btn btn-primary mt-3" type="submit" :disabled="playerNames.length < 2">{{ $t('generator.btn_generate') }}</button>
         </form>
         <div v-if="error" class="mt-2">{{ error }}</div>
       </div>
@@ -97,11 +98,11 @@ export default {
     ,
     handleInput(event) {
       if (event.target.value > 12) {
-        this.error = "Maksymalna liczba graczy to 12";
+        this.error = this.$t('warnings.err_max_players');
         return;
       }
       this.error = null;
-      this.playerNames = generatePlayers(event.target.value);
+      this.playerNames = generatePlayers(event.target.value, this.$t('generator.player'));
       this.blockNegativeNumbersAndText(event);
     },
     blockNegativeNumbersAndText,
@@ -127,12 +128,12 @@ export default {
     ,
     addPlayer(newPlayerName) {
       if (this.playerNames.length >= 12) {
-        this.error = "Maksymalna liczba graczy to 12";
+        this.error = this.$t('warnings.err_max_players');
         return;
       }
       if (newPlayerName) {
         if (this.playerNames.includes(newPlayerName)) {
-          this.error = "Gracz o takiej nazwie już istnieje.";
+          this.error = this.$t('warnings.err_samePlayerName');
         } else {
           this.playerNames.push(newPlayerName);
           this.error = null;
@@ -141,13 +142,14 @@ export default {
     }
     ,
     editPlayer(index) {
-      let newName = prompt("Wprowadź nową nazwę gracza max 30 znaków", this.playerNames[index]);
+      let newName = prompt(this.$t('warnings.edit_player'), this.playerNames[index]);
+      if(newName === null) return;
       if (newName.length > 30) {
         newName = newName.substring(0, 30);
       }
       if (newName && newName !== this.playerNames[index]) {
         if (this.playerNames.includes(newName)) {
-          this.error = "Gracz o takiej nazwie już istnieje.";
+          this.error = this.$t('warnings.err_samePlayerName');
         } else {
           const oldName = this.playerNames[index];
           this.playerNames[index] = newName;

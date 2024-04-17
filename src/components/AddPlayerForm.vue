@@ -1,8 +1,8 @@
 <template>
     <form @submit.prevent="addPlayer">
       <div class="d-flex flex-column flex-sm-row align-items-center mt-2">
-        <input class="form-control me-2" type="text" id="playerName" maxlength="30" v-model="newPlayerName" style="min-width: 100px;" placeholder="Nazwa gracza">
-        <button class="btn btn-primary" type="button" style="min-width: 135px;" @click="addPlayer">Dodaj gracza</button>
+        <input class="form-control me-2" type="text" id="playerName" maxlength="30" v-model="newPlayerName" style="min-width: 100px;" :placeholder="$t('generator.inputPlayer_placeholder')" >
+        <button class="btn btn-primary" type="button" style="min-width: 135px;" @click="addPlayer">{{ $t('generator.btn_players') }}</button>
       </div>
     </form>
   </template>

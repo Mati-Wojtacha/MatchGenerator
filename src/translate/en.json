@@ -1,0 +1,53 @@
+{
+  "nav":{
+    "home":"Generate combinations",
+    "about":"About"
+  },
+  "aboutApp":{
+    "title":"About application",
+    "content":"The main goal of the application is to generate a match schedule in such a way as to divide all participants into two groups and then create a list that will ensure that none of the possible combinations of pairs will be repeated. The application also offers the function of generating rematches for each group, which allows for more complete competition. Users can enter the results of individual matches, which allows them to create a clear summary showing the number of wins and losses for each player.",
+    "content_additional":"Additionally, the application allows you to generate the above-mentioned reports in PDF format, which facilitates their archiving and sharing."
+  },
+  "technologies":{
+    "title":"Technologies",
+    "subtitle":"The application was created using technologies such as:"
+  },
+  "generator":{
+    "title":"Divide people into 2 teams:",
+    "right":"Enter the number of players",
+    "left":"Enter their names",
+    "player":"Player",
+    "btn_generate":"Generate combinations",
+    "inputNumber_placeholder":"Number of players",
+    "inputPlayer_placeholder":"Player name",
+    "btn_players":"Add players",
+    "title_playerList":"Player list",
+    "btn_playerList":"Show/hide list",
+    "btn_revenge":"Add <br> revenge",
+    "btn_generatePDF":"Generate <br> PDF file",
+    "btn_sharePDF":"Share <br> PDF file"
+  },
+  "matchesTable":{
+    "title":"Match",
+    "team1":"Team number 1",
+    "team2":"Team number 2",
+    "points_team1":"Points of team number 1",
+    "points_team2":"Points of team number 2"
+  },
+  "summaryTable":{
+    "title":"Players' points tally",
+    "player_name":"Player name",
+    "points":"Points",
+    "small_points":"Small points",
+    "win":"W",
+    "lose":"L",
+    "draw":"D",
+    "match_result":"Results from match number"
+  },
+  "warnings":{
+    "delete_match":"Are you sure you want to delete match number:",
+    "err_max_players":"The maximum number of players is 12",
+    "err_samePlayerName":"Player with this name already exists.",
+    "edit_player":"Enter a new player name, max 30 characters"
+  }
+}

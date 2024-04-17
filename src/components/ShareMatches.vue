@@ -1,8 +1,12 @@
 <template>
-    <button  class="btn btn-info" @click="generatePDF"><i class="fas fa-file-pdf"></i><br> Generuj<br> plik PDF</button>
-    <button class="btn btn-info" @click="sharePDF"><i class="fas fa-share-square"></i> <br> Udostępnij<br> plik PDF</button>
+    <button  class="btn btn-info" @click="generatePDF"><i class="fas fa-file-pdf"></i><br>
+      <span v-html="$t('generator.btn_generatePDF')"></span>
+      </button>
+    <button class="btn btn-info" @click="sharePDF"><i class="fas fa-share-square"></i> <br>
+      <span v-html="$t('generator.btn_sharePDF')"></span>
+    </button>
 </template>
-<script>
+ <script>
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
@@ -36,7 +40,7 @@ export default {
         bold: true,
         fillColor: '#04AA6D',
         color: 'white',
-        fontSize: 13,
+        fontSize: 12,
       }));
 
       body.push(headers);
@@ -54,7 +58,7 @@ export default {
             fillColor: cell.hasAttribute('colspan') && parseInt(cell.getAttribute('colspan'), 10) > 1 ? '#04AA6D' : 'white',
             bold: cell.hasAttribute('colspan') && parseInt(cell.getAttribute('colspan'), 10) > 1,
             color: cell.hasAttribute('colspan') && parseInt(cell.getAttribute('colspan'), 10) > 1 ? 'white' : 'black',
-            fontSize: cell.hasAttribute('colspan') && parseInt(cell.getAttribute('colspan'), 10) > 1 ? '13' : '12',
+            fontSize:'12',
           };
 
           rowData.push(cellData);
@@ -79,7 +83,7 @@ export default {
         pageMargins: [45, 30, 45, 30 ],
         content: [
           {
-            text: 'Zestawienie punktowe graczy:',
+            text: this.$t('summaryTable.title'),
             fontSize: 16,
             bold: true,
             margin: [5, 5, 5, 5]
@@ -108,13 +112,13 @@ export default {
           const parent = input.parentNode;
           parent.replaceChild(textNode, input);
         });
-        console.log("table element" + tableElement);
+        // console.log("table element" + tableElement);
         if (tableElement) {
           const tableData = this.getTableData(tableElement);
 
           docDefinition.content.push({
-            text: `Wyniki z meczu ${i + 1}:`,
-            fontSize: 12,
+            text: this.$t('summaryTable.match_result')+`${i + 1}:`,
+            fontSize: 13,
             bold: true,
             margin: [5, 15, 5, 5]
           });

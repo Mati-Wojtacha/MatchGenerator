@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h5>Lista graczy:</h5>
-    <button class="btn btn-secondary" @click="toggleList">Pokaż/ukryj listę</button>
+    <h5>{{ $t('generator.title_playerList') }}</h5>
+    <button class="btn btn-secondary" @click="toggleList">{{ $t('generator.btn_playerList') }}</button>
     <div  v-if="showList" style="margin-top: 10px;">
       <p v-for="(player, index) in playerNames" :key="index">
         {{ player }}      

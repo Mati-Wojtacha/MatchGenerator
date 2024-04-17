@@ -5,6 +5,8 @@
     "strict": true,
     "jsx": "preserve",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

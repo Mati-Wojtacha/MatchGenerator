@@ -1,15 +1,15 @@
 <template>
   <div id="summary" style="overflow-x: auto;">
-    <h4>Zestawienie punktowe:</h4>
+    <h4>{{ $t('summaryTable.title') }}</h4>
     <table id="summary-table">
       <thead>
       <tr>
-        <th>Nazwa Gracza</th>
-        <th>Punkty</th>
-        <th>Małe punkty</th>
-        <th>W</th>
-        <th>P</th>
-        <th>R</th>
+        <th>{{ $t('summaryTable.player_name') }}</th>
+        <th>{{ $t('summaryTable.points') }}</th>
+        <th>{{ $t('summaryTable.small_points') }}</th>
+        <th>{{ $t('summaryTable.win') }}</th>
+        <th>{{ $t('summaryTable.lose') }}</th>
+        <th>{{ $t('summaryTable.draw') }}</th>
       </tr>
       </thead>
       <tbody>

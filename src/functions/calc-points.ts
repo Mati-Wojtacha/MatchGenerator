@@ -3,8 +3,6 @@ const DRAW_POINTS = 1;
 const LOSS_POINTS = 0;
 
 export function getPoints(data: any) {
-    console.log("Data received in calc:", data);
-
     const playerPoints: {
         [key: string]: {
             winMatches: number,
@@ -53,7 +51,5 @@ export function getPoints(data: any) {
         });
     });
 
-
-    console.log("Player Points and Small Points:", playerPoints);
     return playerPoints;
 }

@@ -9,17 +9,31 @@
           </button>
         </div>
         <a class="mr-auto text-center mx-auto" href="#">
-          <img :src="require('@/../public/logo.png')"  height="50" id="logo" alt="logo">
+          <img :src="require('@/../public/logo.png')" height="50" id="logo" alt="logo">
         </a>
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navigate navbar-nav mr-auto text-center mx-auto">
             <li class="navigate-item nav-item">
-              <RouterLink to="/" class="nav2" active-class="navi-activated">Generuj kombinacje
-              </RouterLink>
+              <RouterLink to="/" class="nav2" active-class="navi-activated">{{ $t('nav.home') }}</RouterLink>
             </li>
             <li class="navigate-item nav-item">
-              <RouterLink to="/about" class="nav2" active-class="navi-activated">O aplikacji</RouterLink>
+              <RouterLink to="/about" class="nav2" active-class="navi-activated">{{ $t('nav.about') }}</RouterLink>
+            </li>
+            <li class="navigate-item nav-item">
+              <div class="container-langSwitcher">
+                <button class="language-button" @click="toggleLocaleMenu">
+                  <i class="fas fa-language" style="height: 25px; margin-right: 5px;"></i>
+                  <i class="fa-solid fa-angles-down"></i>
+                </button>
+                <div v-if="showLocaleMenu" class="buttons-container-langSwitcher">
+                  <div v-for="locale in $i18n.availableLocales" :key="locale">
+                    <button class="btn btn-secondary" @click="setLocale(locale)" style="width: 65px;">
+                      <img :src="require('@/../public/flags_icons/'+locale+'.svg')" :alt="'flag_'+locale" style="width: 20px;">
+                   </button>
+                  </div>
+                </div>
+              </div>
             </li>
           </ul>
 
@@ -27,11 +41,11 @@
         <div style="position: absolute; right: 0; top: 15px;">
           <div class="theme-switch-wrapper">
             <label class="theme-switch" for="theme-switch">
-              <input type="checkbox" id="theme-switch" v-model="isDark" @click="toggleTheme" />
-              <div class="slider round">
-                <span class="icon sun" v-if="isDark" >☀️</span>
+              <input type="checkbox" id="theme-switch" v-model="isDark" @click="toggleTheme"/>
+              <span class="slider round">
+                <span class="icon sun" v-if="isDark">☀️</span>
                 <span class="icon moon" v-if="!isDark">🌙</span>
-              </div>
+              </span>
             </label>
           </div>
 
@@ -55,6 +69,8 @@ export default {
     return {
       dateFromToken: null,
       isDark: useDark(),
+      showLocaleMenu: false,
+
     }
   },
 
@@ -68,6 +84,13 @@ export default {
       const isExpanded = button.getAttribute('aria-expanded') === 'true';
       button.setAttribute('aria-expanded', !isExpanded);
       navbar.classList.toggle('show', !isExpanded);
+    },
+    toggleLocaleMenu() {
+      this.showLocaleMenu = !this.showLocaleMenu;
+    },
+    setLocale(locale) {
+      this.$i18n.locale = locale;
+      this.showLocaleMenu = false;
     },
   }
 }
@@ -98,10 +121,45 @@ export default {
 .sun, .moon {
   font-size: 18px;
 }
+
 .sun {
   margin-left: 4px;
 }
+
 .moon {
   margin-left: 26px;
 }
+
+.language-button {
+  background-color: transparent;
+  color: black;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.language-button:hover, .language-button:focus {
+  background-color: #0d6efd;
+  color: white;
+  outline: none;
+}
+.container-langSwitcher {
+  z-index: 9;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+.buttons-container-langSwitcher {
+  z-index: 9;
+  position: absolute;
+  max-height: 200px;
+  overflow: auto;
+  top: 100%;
+}
+
 </style>

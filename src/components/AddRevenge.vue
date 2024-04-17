@@ -1,7 +1,9 @@
 <template>
   <button class="btn btn-info" @click="addRevenge" :disabled="isRevenge">
-    <i class="fas fa-sync-alt"></i><br>Dodaj<br> rewanże
+    <i class="fas fa-sync-alt"></i><br>
+    <span v-html="$t('generator.btn_revenge')"></span>
   </button>
+
 </template>
 
 <script>
