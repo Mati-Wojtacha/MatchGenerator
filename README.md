@@ -1,12 +1,12 @@
-# TeamAllocation
+# MatchGenerator
 
-TeamAllocation is a straightforward application that divides people into two teams, ensuring that each person plays against another exactly once, creating a unique match for every individual. In addition to this core functionality, it offers the following features:
+MatchGenerator is a straightforward application that divides people into two teams, ensuring that each person plays against another exactly once, creating a unique match for every individual. In addition to this core functionality, it offers the following features:
 
 1. Rematches: The application allows you to create rematches for all matches. This ensures that players can face each other again in subsequent rounds.
 2. Removal of Individual Rematch Objects: You can remove specific rematch objects if needed. This flexibility allows you to manage the rematch process effectively.
 3. PDF Generation: TeamAllocation provides the capability to generate PDF files containing all match details. These files include information about every game played.
 
-You can test the application, click below and test!
+You can test the application, click below and test it!
 https://mati-wojtacha.github.io/MatchGenerator/
 # app
 
