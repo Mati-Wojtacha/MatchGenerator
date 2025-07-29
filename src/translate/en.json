@@ -51,6 +51,6 @@
     "err_max_players":"The maximum number of players is 12",
     "err_samePlayerName":"Player with this name already exists.",
     "edit_player":"Enter a new player name, max 30 characters",
-    "err_invalid_players_number": "The number of players must be even and greater than or equal to 4"
+    "err_invalid_players_number": "The number of players must be greater than or equal to 4"
   }
 }

@@ -51,6 +51,6 @@
     "err_max_players":"Maksymalna liczba graczy to 12",
     "err_samePlayerName":"Gracz o takiej nazwie już istnieje.",
     "edit_player":"Wprowadź nową nazwę gracza max 30 znaków",
-    "err_invalid_players_number": "Liczba graczy musi być parzysta i większa lub równa 4"
+    "err_invalid_players_number": "Liczba graczy musi być większa lub równa 4"
   }
 }

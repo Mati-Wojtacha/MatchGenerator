@@ -1,7 +1,7 @@
 export function generateUniqueTeamCombinations(nPlayers: number)
 {
-    if (nPlayers < 4 || nPlayers % 2 !== 0) {
-        throw new Error('The number of players must be even and greater than or equal to 4');
+    if (nPlayers < 4 ) {
+        throw new Error('The number of players must be greater than or equal to 4');
     }
 
     const players = Array.from({ length: nPlayers }, (_, i) => i + 1);
