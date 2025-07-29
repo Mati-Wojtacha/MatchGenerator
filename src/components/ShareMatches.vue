@@ -10,38 +10,43 @@
 </template>
 
 <script>
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import pdfMake from 'pdfmake/build/pdfmake';
+import 'pdfmake/build/vfs_fonts';
 
 export default {
+  name: 'ShareMatches',
   methods: {
     generatePDF() {
-      this.createPDFDocument().open();
+      try {
+        const docDefinition = this.prepareDocumentDefinition();
+        const pdf = pdfMake.createPdf(docDefinition);
+        pdf.open();
+      } catch (error) {
+        console.error('Error while generate PDF file:', error);
+      }
     },
 
     async sharePDF() {
-      const PDF = this.createPDFDocument();
+      try {
+        const docDefinition = this.prepareDocumentDefinition();
+        const pdf = pdfMake.createPdf(docDefinition);
 
-      PDF.getBuffer(async (buffer) => {
-        const blob = new Blob([buffer], { type: 'application/pdf' });
-        const files = [new File([blob], 'document.pdf', { type: 'application/pdf' })];
+        pdf.getBuffer((buffer) => {
+          const blob = new Blob([buffer], { type: 'application/pdf' });
+          const files = [new File([blob], 'mecze.pdf', { type: 'application/pdf' })];
 
-        try {
-          if (navigator.canShare({ files })) {
-            await navigator.share({ files });
-            console.log('Udostępniono pomyślnie');
+          if (navigator.canShare?.({ files })) {
+            navigator.share({ files })
+                .then(() => console.log('Share successful'))
+                .catch((error) => console.error('Error while share:', error));
+          } else {
+            console.error('File share is unsupported');
           }
-        } catch (error) {
-          console.error('Błąd podczas udostępniania:', error);
-        }
-      });
-    },
-
-    createPDFDocument() {
-      const docDefinition = this.prepareDocumentDefinition();
-      return pdfMake.createPdf(docDefinition);
+        });
+      } catch (error) {
+        console.error('Error while generate PDF file to share:', error);
+      }
     },
 
     prepareDocumentDefinition() {

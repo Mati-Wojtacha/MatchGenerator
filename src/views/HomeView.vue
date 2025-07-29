@@ -16,9 +16,9 @@ import { generateCombinations } from "@/functions/generateCombination";
 
 export default {
   components: { MatchGeneratorCore },
-  data() {
-    return {
-      texts: {
+  computed: {
+    texts() {
+      return {
         title: this.$t("generator.title"),
         right: this.$t("generator.right"),
         left: this.$t("generator.left"),
@@ -29,8 +29,8 @@ export default {
         duplicateNameError: this.$t("warnings.err_samePlayerName"),
         editPrompt: this.$t("warnings.edit_player"),
         playerPrefix: this.$t("generator.player"),
-      },
-    };
+      };
+    }
   },
   methods: {
     generateCombinations,
