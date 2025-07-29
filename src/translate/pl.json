@@ -1,7 +1,8 @@
 {
   "nav":{
     "home":"Generuj kombinacje",
-    "about":"O aplikacji"
+    "about":"O aplikacji",
+    "2vs2": "Kombinacje 2 na 2"
   },
   "aboutApp":{
     "title":"O Aplikacji",
@@ -13,7 +14,8 @@
     "subtitle":"Aplikacja została stworzona z wykorzystaniem technologii takich jak:"
   },
   "generator":{
-    "title":"Podziel osoby na 2 drużyny:",
+    "title": "Podziel wszystkich graczy na dwie równe drużyny i wygeneruj wszystkie możliwe kombinacje meczów:",
+    "2vs2_title": "Podziel wszystkich graczy na zespoły 2-osobowe i stwórz wszystkie możliwe kombinacje meczów 2 na 2:",
     "right":"Podaj liczbę graczy",
     "left":"Wpisz ich nazwy",
     "player":"Gracz",
@@ -48,6 +50,7 @@
     "delete_match":"Czy na pewno chcesz usunąć mecz numer: ",
     "err_max_players":"Maksymalna liczba graczy to 12",
     "err_samePlayerName":"Gracz o takiej nazwie już istnieje.",
-    "edit_player":"Wprowadź nową nazwę gracza max 30 znaków"
+    "edit_player":"Wprowadź nową nazwę gracza max 30 znaków",
+    "err_invalid_players_number": "Liczba graczy musi być parzysta i większa lub równa 4"
   }
 }

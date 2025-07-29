@@ -1,7 +1,8 @@
 {
   "nav":{
     "home":"Generate combinations",
-    "about":"About"
+    "about":"About",
+    "2vs2": "Combinations 2 vs 2"
   },
   "aboutApp":{
     "title":"About application",
@@ -13,7 +14,8 @@
     "subtitle":"The application was created using technologies such as:"
   },
   "generator":{
-    "title":"Divide people into 2 teams:",
+    "title": "Divide all players into two equal teams and generate all possible match combinations:",
+    "2vs2_title": "Split all players into 2-player teams and generate all possible 2 vs 2 match combinations:",
     "right":"Enter the number of players",
     "left":"Enter their names",
     "player":"Player",
@@ -48,6 +50,7 @@
     "delete_match":"Are you sure you want to delete match number:",
     "err_max_players":"The maximum number of players is 12",
     "err_samePlayerName":"Player with this name already exists.",
-    "edit_player":"Enter a new player name, max 30 characters"
+    "edit_player":"Enter a new player name, max 30 characters",
+    "err_invalid_players_number": "The number of players must be even and greater than or equal to 4"
   }
 }
