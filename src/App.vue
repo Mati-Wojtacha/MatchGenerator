@@ -18,6 +18,9 @@
               <RouterLink to="/" class="nav2" active-class="navi-activated">{{ $t('nav.home') }}</RouterLink>
             </li>
             <li class="navigate-item nav-item">
+              <RouterLink to="/2vs2" class="nav2" active-class="navi-activated">{{ $t('nav.2vs2') }}</RouterLink>
+            </li>
+            <li class="navigate-item nav-item">
               <RouterLink to="/about" class="nav2" active-class="navi-activated">{{ $t('nav.about') }}</RouterLink>
             </li>
             <li class="navigate-item nav-item">
@@ -56,7 +59,11 @@
     </nav>
   </header>
 
-  <RouterView/>
+  <RouterView v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </RouterView>
 </template>
 
 <script>
