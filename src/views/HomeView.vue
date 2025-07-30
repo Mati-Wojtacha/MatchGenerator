@@ -4,9 +4,11 @@
       :showRevenge="true"
       :texts="texts"
       :formRules="{
-      inputMin: 2,
-      generateButtonDisabled: (count) => count < 2
-    }"
+        inputMin: 2,
+        generateButtonDisabled: (count) => count < 2
+      }"
+      :initialData="storedData"
+      @stateChanged="handleStateChange"
   />
 </template>
 
@@ -32,10 +34,22 @@ export default {
         editPrompt: this.$t("warnings.edit_player"),
         playerPrefix: this.$t("generator.player"),
       };
+    },
+    storedData() {
+      return this.$store.getters.getPageData('home');
     }
   },
   methods: {
     generateCombinations,
+    handleStateChange(newState) {
+      this.$store.dispatch('savePageData', {
+        page: 'home',
+        data: newState
+      });
+    }
   },
+  created() {
+    this.$store.dispatch('loadStoredData');
+  }
 };
 </script>

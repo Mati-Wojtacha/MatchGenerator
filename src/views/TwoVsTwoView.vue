@@ -4,9 +4,11 @@
       :showRevenge="true"
       :texts="texts"
       :formRules="{
-      inputMin: 4,
-      generateButtonDisabled: (count) => count < 4
-    }"
+        inputMin: 4,
+        generateButtonDisabled: (count) => count < 4
+      }"
+      :initialData="storedData"
+      @stateChanged="handleStateChange"
   />
 </template>
 
@@ -32,10 +34,22 @@ export default {
         editPrompt: this.$t('warnings.edit_player'),
         playerPrefix: this.$t('generator.player')
       };
+    },
+    storedData() {
+      return this.$store.getters.getPageData('twoVsTwo');
     }
   },
   methods: {
     generateUniqueTeamCombinations,
+    handleStateChange(newState) {
+      this.$store.dispatch('savePageData', {
+        page: 'twoVsTwo',
+        data: newState
+      });
+    }
   },
+  created() {
+    this.$store.dispatch('loadStoredData');
+  }
 };
 </script>

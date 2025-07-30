@@ -17,7 +17,7 @@ export default {
   props: ["playerNames"],
   data() {
     return {
-      showList: true
+      showList: false
     };
   },
   methods: {
