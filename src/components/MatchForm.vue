@@ -22,18 +22,20 @@
         </tbody>
         <tfoot>
         <tr>
-          <td colspan="2" style="    border-top: 2px solid white">
-            <label :for="`team1-${item.id}`">{{ $t('matchesTable.points_team1') }}:&nbsp</label>
-            <input :id="`team1-${item.id}`" type="number" min="0" v-model="item.firstPoints"
-                   @input="handleInputChange($event)">
+          <td colspan="2" class="border-top border-bottom border-white text-center fw-bold">
+            <label>{{ $t('matchesTable.points') }}:&nbsp</label>
           </td>
         </tr>
         <tr>
-          <td colspan="2">
-            <label :for="`team2-${item.id}`" class="form-label">{{ $t('matchesTable.points_team2') }}:&nbsp</label>
+          <td>
+            <input :id="`team1-${item.id}`" type="number" min="0" v-model="item.firstPoints"
+                   @input="handleInputChange($event)">
+          </td>
+          <td>
             <input :id="`team2-${item.id}`" type="number" min="0" v-model="item.secondPoints"
                    @input="handleInputChange($event)">
           </td>
+
         </tr>
         </tfoot>
 
