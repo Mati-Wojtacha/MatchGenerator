@@ -5,8 +5,6 @@ import "bootstrap";
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
-
 
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
@@ -33,8 +31,7 @@ const i18n = createI18n({
 
 const app = createApp(App);
 
-app.component('font-awesome-icon', FontAwesomeIcon);
-app.use(store);
+app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(router);
 app.use(i18n);
 app.mount('#app');
