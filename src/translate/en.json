@@ -33,6 +33,7 @@
     "title":"Match",
     "team1":"Team number 1",
     "team2":"Team number 2",
+    "points": "Points of teams",
     "points_team1":"Points of team number 1",
     "points_team2":"Points of team number 2"
   },
