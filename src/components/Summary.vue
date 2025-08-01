@@ -13,16 +13,18 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(value, key, index) in getPoints(data)" :key="key">
+      <tr v-for="(player, index) in getPoints(data)" :key="player.name">
         <td class="text-wrap">
-          {{ key }}
-          <button type="button" class="btn btn-secondary" @click="$emit('edit-player', index)"><i class="fas fa-edit"></i></button>
+          {{ player.name }}
+          <button type="button" class="btn btn-secondary" @click="$emit('edit-player', index)">
+            <i class="fas fa-edit"></i>
+          </button>
         </td>
-        <td style="text-align: center;">{{ value.points }}</td>
-        <td style="text-align: center;">{{ value.smallPoints }}</td>
-        <td style="text-align: center;">{{ value.winMatches }}</td>
-        <td style="text-align: center;">{{ value.lossMatches }}</td>
-        <td style="text-align: center;">{{ value.drawMatches }}</td>
+        <td style="text-align: center;">{{ player.points }}</td>
+        <td style="text-align: center;">{{ player.smallPoints }}</td>
+        <td style="text-align: center;">{{ player.winMatches }}</td>
+        <td style="text-align: center;">{{ player.lossMatches }}</td>
+        <td style="text-align: center;">{{ player.drawMatches }}</td>
       </tr>
       </tbody>
     </table>

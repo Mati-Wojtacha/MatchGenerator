@@ -2,30 +2,51 @@ const WIN_POINTS = 3;
 const DRAW_POINTS = 1;
 const LOSS_POINTS = 0;
 
-export function getPoints(data: any) {
+interface PlayerData {
+    name: string;
+    winMatches: number;
+    lossMatches: number;
+    drawMatches: number;
+    points: number;
+    smallPoints: number;
+}
 
-    const playerPoints: {
-        [key: string]: {
-            winMatches: number,
-            lossMatches: number,
-            drawMatches: number,
-            points: number,
-            smallPoints: number
-        }
-    } = {};
-    if(!data) return playerPoints;
+const createEmptyPlayerData = (player: string): PlayerData => ({
+    name: player,
+    winMatches: 0,
+    lossMatches: 0,
+    drawMatches: 0,
+    points: 0,
+    smallPoints: 0
+});
+
+const updatePlayerStats = (
+    playerData: PlayerData,
+    isWin: boolean,
+    isDraw: boolean,
+    points: number,
+    pointsDiff: number
+) => {
+    playerData.points += points;
+    playerData.smallPoints += pointsDiff;
+
+    if (isDraw) playerData.drawMatches++;
+    else if (isWin) playerData.winMatches++;
+    else playerData.lossMatches++;
+};
+
+export function getPoints(data: any): PlayerData[] {
+    const playerPointsMap = new Map<string, PlayerData>();
+
+    if(!data) return [];
 
     data.forEach((match: any) => {
+        const allPlayers = [...match.firstHalf, ...match.secondHalf];
+
         if (match.firstPoints === undefined || match.secondPoints === undefined) {
-            [...match.firstHalf, ...match.secondHalf].forEach((player: string) => {
-                if (!playerPoints[player]) {
-                    playerPoints[player] = {
-                        winMatches: 0,
-                        lossMatches: 0,
-                        drawMatches: 0,
-                        points: 0,
-                        smallPoints: 0
-                    };
+            allPlayers.forEach(player => {
+                if (!playerPointsMap.has(player)) {
+                    playerPointsMap.set(player, createEmptyPlayerData(player));
                 }
             });
             return;
@@ -33,41 +54,28 @@ export function getPoints(data: any) {
 
         const firstPoints = match.firstPoints;
         const secondPoints = match.secondPoints;
+        const pointsDiff = firstPoints - secondPoints;
+        const isDraw = firstPoints === secondPoints;
+        const firstTeamWins = firstPoints > secondPoints;
 
-        const result = firstPoints > secondPoints ? WIN_POINTS : (firstPoints < secondPoints ? LOSS_POINTS : DRAW_POINTS);
-
-        match.firstHalf.forEach((player: string) => {
-            if (!playerPoints[player]) {
-                playerPoints[player] = {winMatches: 0, lossMatches: 0, drawMatches: 0, points: 0, smallPoints: 0};
+        allPlayers.forEach(player => {
+            if (!playerPointsMap.has(player)) {
+                playerPointsMap.set(player, createEmptyPlayerData(player));
             }
-            playerPoints[player].points += result === DRAW_POINTS ? DRAW_POINTS : (result > DRAW_POINTS ? WIN_POINTS : LOSS_POINTS);
-            playerPoints[player].smallPoints += firstPoints - secondPoints;
 
-            if (result === WIN_POINTS) {
-                playerPoints[player].winMatches += 1;
-            } else if (result === LOSS_POINTS) {
-                playerPoints[player].lossMatches += 1;
-            } else {
-                playerPoints[player].drawMatches += 1;
-            }
-        });
+            const playerData = playerPointsMap.get(player)!;
+            const isFirstTeam = match.firstHalf.includes(player);
+            const isWinningTeam = isFirstTeam ? firstTeamWins : !firstTeamWins;
 
-        match.secondHalf.forEach((player: string) => {
-            if (!playerPoints[player]) {
-                playerPoints[player] = {winMatches: 0, lossMatches: 0, drawMatches: 0, points: 0, smallPoints: 0};
-            }
-            playerPoints[player].points += result === DRAW_POINTS ? DRAW_POINTS : (result < DRAW_POINTS ? WIN_POINTS : LOSS_POINTS);
-            playerPoints[player].smallPoints += secondPoints - firstPoints;
-
-            if (result === WIN_POINTS) {
-                playerPoints[player].lossMatches += 1;
-            } else if (result === LOSS_POINTS) {
-                playerPoints[player].winMatches += 1;
-            } else {
-                playerPoints[player].drawMatches += 1;
-            }
+            updatePlayerStats(
+                playerData,
+                isWinningTeam,
+                isDraw,
+                isDraw ? DRAW_POINTS : (isWinningTeam ? WIN_POINTS : LOSS_POINTS),
+                isFirstTeam ? pointsDiff : -pointsDiff
+            );
         });
     });
 
-    return playerPoints;
+    return Array.from(playerPointsMap.values());
 }

@@ -14,7 +14,6 @@
         <div>{{ texts.left }}</div>
       </div>
 
-      <!-- Form -->
       <div  class="row mt-4">
         <div class="col-md-6">
           <form @submit.prevent="fetchData">
@@ -62,7 +61,6 @@
 
     <div v-if="error" class="alert alert-danger mt-3">{{ error }}</div>
 
-    <!-- Matches -->
     <div v-if="data" class="row mt-4" ref="pdfContent">
       <div class="col-md-6">
         <MatchForm :data="data" @changeIsRevenge="updateRevenge" />
@@ -108,6 +106,16 @@ export default {
         generateButtonDisabled: playerCount => playerCount < 0,
       }),
     },
+    initialData: {
+      type: Object,
+      default: () => ({
+        numberOfPlayers: null,
+        isAddPlayerFormVisible: false,
+        playerNames: [],
+        data: null,
+        isRevenge: false
+      })
+    }
   },
   components: {
     AddPlayerForm,
@@ -127,6 +135,38 @@ export default {
       isRevenge: false,
     };
   },
+  created() {
+    if (this.initialData) {
+      this.numberOfPlayers = this.initialData.numberOfPlayers;
+      this.isAddPlayerFormVisible = this.initialData.isAddPlayerFormVisible;
+      this.playerNames = this.initialData.playerNames;
+      this.data = this.initialData.data;
+      this.isRevenge = this.initialData.isRevenge;
+    }
+  },
+  watch: {
+    numberOfPlayers(val) {
+      this.emitStateChange();
+    },
+    isAddPlayerFormVisible(val) {
+      this.emitStateChange();
+    },
+    playerNames: {
+      handler() {
+        this.emitStateChange();
+      },
+      deep: true
+    },
+    data: {
+      handler() {
+        this.emitStateChange();
+      },
+      deep: true
+    },
+    isRevenge(val) {
+      this.emitStateChange();
+    }
+  },
   methods: {
     confirmReset() {
         if (confirm(this.texts.confirmReset)) {
@@ -140,6 +180,15 @@ export default {
           }
         }
       },
+    emitStateChange() {
+      this.$emit('stateChanged', {
+        numberOfPlayers: this.numberOfPlayers,
+        isAddPlayerFormVisible: this.isAddPlayerFormVisible,
+        playerNames: this.playerNames,
+        data: this.data,
+        isRevenge: this.isRevenge
+      });
+    },
       resetForm() {
       this.numberOfPlayers = null;
       this.playerNames = [];
