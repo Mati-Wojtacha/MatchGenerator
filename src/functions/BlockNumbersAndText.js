@@ -3,9 +3,5 @@ export function blockNegativeNumbersAndText(event) {
 
   value = value.replace(/[^0-9]/g, '');
 
-  if (value === '') {
-    value = '0';
-  }
-
   event.target.value = value;
 }
