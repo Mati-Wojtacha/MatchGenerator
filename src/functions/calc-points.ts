@@ -43,12 +43,10 @@ export function getPoints(data: any): PlayerData[] {
     data.forEach((match: any) => {
         const allPlayers = [...match.firstHalf, ...match.secondHalf];
 
-        if (match.firstPoints === undefined || match.secondPoints === undefined) {
-            allPlayers.forEach(player => {
-                if (!playerPointsMap.has(player)) {
-                    playerPointsMap.set(player, createEmptyPlayerData(player));
-                }
-            });
+        if ([match.firstPoints, match.secondPoints].some(score => score === undefined || score === null || score === '')) {
+            allPlayers.forEach(player =>
+                !playerPointsMap.has(player) && playerPointsMap.set(player, createEmptyPlayerData(player))
+            );
             return;
         }
 
