@@ -27,7 +27,9 @@
     "btn_playerList":"Pokaż/ukryj listę",
     "btn_revenge":"Dodaj <br> rewanże",
     "btn_generatePDF":"Generuj<br> plik PDF",
-    "btn_sharePDF":"Udostępnij<br> plik PDF"
+    "btn_sharePDF":"Udostępnij<br> plik PDF",
+    "btn_reset": "Resetuj dane",
+    "confirm_reset": "Czy na pewno chcesz zresetować wszystkie dane? Spowoduje to usunięcie wszystkich graczy i wygenerowanych meczów."
   },
   "matchesTable":{
     "title":"Mecz",

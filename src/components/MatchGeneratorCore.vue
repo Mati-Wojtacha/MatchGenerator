@@ -3,50 +3,64 @@
     <div class="d-flex justify-content-center">
       <label style="font-weight: bold; margin-bottom: 0.5rem;">{{ texts.title }}</label>
     </div>
-    <div class="d-flex justify-content-center">
-      <div>{{ texts.right }}</div>
-      <div class="switch mx-2">
-        <input type="checkbox" id="switchView" v-model="isAddPlayerFormVisible" @input="resetForm()" />
-        <label for="switchView" class="switch-label"></label>
-      </div>
-      <div>{{ texts.left }}</div>
-    </div>
 
-    <!-- Form -->
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <form @submit.prevent="fetchData">
-          <AddPlayerForm v-if="isAddPlayerFormVisible" @add-player="addPlayer" />
-          <input
-              v-else
-              class="form-control"
-              type="number"
-              :min="formRules.inputMin"
-              max="12"
-              v-model="numberOfPlayers"
-              @input="handleInput"
-              :placeholder="texts.placeholder"
-              required
-          />
-          <button
-              class="btn btn-primary mt-3"
-              type="submit"
-              :disabled="formRules.generateButtonDisabled(playerNames.length)"
-          >
-            {{ texts.btnGenerate }}
-          </button>
-        </form>
-        <div v-if="error" class="alert alert-danger mt-3">{{ error }}</div>
+    <div v-if="!data">
+      <div class="d-flex justify-content-center">
+        <div>{{ texts.right }}</div>
+        <div class="switch mx-2">
+          <input type="checkbox" id="switchView" v-model="isAddPlayerFormVisible" @input="resetForm()" />
+          <label for="switchView" class="switch-label"></label>
+        </div>
+        <div>{{ texts.left }}</div>
       </div>
-      <div class="col-md-6">
-        <PlayerList
-            ref="playerList"
-            :playerNames="playerNames"
-            @edit-player="editPlayer"
-            @delete-player="deletePlayer"
-        />
+
+      <!-- Form -->
+      <div  class="row mt-4">
+        <div class="col-md-6">
+          <form @submit.prevent="fetchData">
+            <AddPlayerForm v-if="isAddPlayerFormVisible" @add-player="addPlayer" />
+            <input
+                v-else
+                class="form-control"
+                type="number"
+                :min="formRules.inputMin"
+                max="12"
+                v-model="numberOfPlayers"
+                @input="handleInput"
+                :placeholder="texts.placeholder"
+                required
+            />
+            <div class="d-flex gap-2 mt-3">
+              <button
+                  class="btn btn-primary"
+                  type="submit"
+                  :disabled="formRules.generateButtonDisabled(playerNames.length)"
+              >
+                {{ texts.btnGenerate }}
+              </button>
+            </div>
+          </form>
+        </div>
+        <div v-if="playerNames.length > 0" class="col-md-6">
+          <PlayerList
+              ref="playerList"
+              :playerNames="playerNames"
+              @edit-player="editPlayer"
+              @delete-player="deletePlayer"
+          />
+        </div>
       </div>
     </div>
+    <button
+        v-if="data"
+        type="button"
+        class="btn btn-warning w-100 mt-3"
+        @click="confirmReset"
+    >
+      <i class="fas fa-trash-alt"></i> {{ texts.btnReset }}
+    </button>
+
+    <div v-if="error" class="alert alert-danger mt-3">{{ error }}</div>
 
     <!-- Matches -->
     <div v-if="data" class="row mt-4" ref="pdfContent">
@@ -54,7 +68,10 @@
         <MatchForm :data="data" @changeIsRevenge="updateRevenge" />
       </div>
       <div class="col-md-6">
-        <Summary :data="data" />
+        <Summary
+            :data="data"
+            @edit-player="editPlayer"
+        />
         <div class="text-center">
           <AddRevenge
               v-if="showRevenge"
@@ -111,7 +128,19 @@ export default {
     };
   },
   methods: {
-    resetForm() {
+    confirmReset() {
+        if (confirm(this.texts.confirmReset)) {
+          this.data = null;
+          this.isRevenge = false;
+          this.error = null;
+          this.playerNames = [];
+          this.numberOfPlayers = null;
+          if (this.$refs.playerList) {
+            this.$refs.playerList.showList = false;
+          }
+        }
+      },
+      resetForm() {
       this.numberOfPlayers = null;
       this.playerNames = [];
     },
@@ -129,12 +158,11 @@ export default {
       this.$refs.playerList.showList = false;
       try {
         const combinations = this.generatorFn(this.playerNames.length);
-        const stringList = combinations.map(([id, firstHalf, secondHalf]) => ({
+        this.data = combinations.map(([id, firstHalf, secondHalf]) => ({
           id,
           firstHalf: firstHalf.map(i => this.playerNames[i - 1]),
           secondHalf: secondHalf.map(i => this.playerNames[i - 1]),
         }));
-        this.data = stringList;
         this.isRevenge = false;
       } catch (e) {
         this.error = this.texts.invalidPlayersError;

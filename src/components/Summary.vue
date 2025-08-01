@@ -13,9 +13,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(value, key) in getPoints(data)" :key="key">
+      <tr v-for="(value, key, index) in getPoints(data)" :key="key">
         <td class="text-wrap">
-          {{ key }}</td>
+          {{ key }}
+          <button type="button" class="btn btn-secondary" @click="$emit('edit-player', index)"><i class="fas fa-edit"></i></button>
+        </td>
         <td style="text-align: center;">{{ value.points }}</td>
         <td style="text-align: center;">{{ value.smallPoints }}</td>
         <td style="text-align: center;">{{ value.winMatches }}</td>

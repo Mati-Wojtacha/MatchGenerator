@@ -27,8 +27,10 @@
     "btn_playerList":"Show/hide list",
     "btn_revenge":"Add <br> revenge",
     "btn_generatePDF":"Generate <br> PDF file",
-    "btn_sharePDF":"Share <br> PDF file"
-  },
+    "btn_sharePDF":"Share <br> PDF file",
+    "btn_reset": "Reset data",
+    "confirm_reset": "Are you sure you want to reset all data? This will delete all players and generated matches."
+},
   "matchesTable":{
     "title":"Match",
     "team1":"Team number 1",
