@@ -1,7 +1,7 @@
 <template>
   <MatchGeneratorCore
       :generatorFn="generateUniqueTeamCombinations"
-      :showRevenge="true"
+      :showRevenge="false"
       :texts="texts"
       :formRules="{
         inputMin: 4,

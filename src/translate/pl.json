@@ -37,7 +37,9 @@
     "team2":"Drużyna numer 2",
     "points": "Punkty drużyn",
     "points_team1":"Punkty drużyny numer 1",
-    "points_team2":"Punkty drużyny numer 2"
+    "points_team2":"Punkty drużyny numer 2",
+    "showBtn": "Pokaż mecze z wynikami",
+    "hiddenBtn": "Ukryj mecze z wynikami"
   },
   "summaryTable":{
     "title":"Zestawienie punktowe graczy:",
