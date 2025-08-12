@@ -51,9 +51,9 @@
           <td class="text-wrap">{{ item.secondHalf[index] }}</td>
         </tr>
         </tbody>
-        <tfoot>
+        <tfoot class="border">
         <tr>
-          <td colspan="2" class="border-top border-bottom border-white text-center fw-bold">
+          <td colspan="2" class="text-center">
             <label>{{ $t('matchesTable.points') }}:&nbsp</label>
           </td>
         </tr>
