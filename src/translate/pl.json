@@ -44,6 +44,7 @@
   "summaryTable":{
     "title":"Zestawienie punktowe graczy:",
     "player_name":"Nazwa gracza",
+    "total_matches": "Liczba gier",
     "points":"Punkty",
     "small_points":"Małe punkty",
     "win":"W",

@@ -9,6 +9,7 @@ interface PlayerData {
     drawMatches: number;
     points: number;
     smallPoints: number;
+    totalMatches: number;
 }
 
 const createEmptyPlayerData = (player: string): PlayerData => ({
@@ -17,7 +18,8 @@ const createEmptyPlayerData = (player: string): PlayerData => ({
     lossMatches: 0,
     drawMatches: 0,
     points: 0,
-    smallPoints: 0
+    smallPoints: 0,
+    totalMatches: 0
 });
 
 const updatePlayerStats = (
@@ -33,6 +35,8 @@ const updatePlayerStats = (
     if (isDraw) playerData.drawMatches++;
     else if (isWin) playerData.winMatches++;
     else playerData.lossMatches++;
+
+    playerData.totalMatches++;
 };
 
 export function getPoints(data: any): PlayerData[] {

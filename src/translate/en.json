@@ -44,6 +44,7 @@
   "summaryTable":{
     "title":"Players' points tally",
     "player_name":"Player name",
+    "total_matches": "Total games",
     "points":"Points",
     "small_points":"Small points",
     "win":"W",

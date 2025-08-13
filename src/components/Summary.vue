@@ -5,6 +5,7 @@
       <thead>
       <tr>
         <th>{{ $t('summaryTable.player_name') }}</th>
+        <th>{{ $t('summaryTable.total_matches') }}</th>
         <th>{{ $t('summaryTable.points') }}</th>
         <th>{{ $t('summaryTable.small_points') }}</th>
         <th>{{ $t('summaryTable.win') }}</th>
@@ -20,6 +21,7 @@
             <i class="fas fa-edit"></i>
           </button>
         </td>
+        <td style="text-align: center;">{{ player.totalMatches }}</td>
         <td style="text-align: center;">{{ player.points }}</td>
         <td style="text-align: center;">{{ player.smallPoints }}</td>
         <td style="text-align: center;">{{ player.winMatches }}</td>
