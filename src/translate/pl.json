@@ -1,4 +1,9 @@
 {
+  "title": {
+    "home": "Strona główna — Match Generator",
+    "twoVsTwo": "Kombinacje 2 na 2 — Match Generator",
+    "about": "O aplikacji — Match Generator"
+  },
   "nav":{
     "home":"Generuj kombinacje",
     "about":"O aplikacji",

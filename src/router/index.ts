@@ -7,17 +7,20 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: {titleKey: 'title.home'}
   },
   {
     path: '/2vs2',
     name: 'TwoVsTwoView',
-    component: TwoVsTwoView
+    component: TwoVsTwoView,
+    meta: {titleKey: 'title.twoVsTwo'}
   },
   {
     path: '/about',
     name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    meta: {titleKey: 'title.about'}
   }
 ]
 

@@ -37,4 +37,12 @@ app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(store);
 app.use(router);
 app.use(i18n);
+function applyTitle(route: any) {
+    const key = (route.meta && route.meta.titleKey) || 'title.home';
+    document.title = i18n.global.t(key) as string;
+}
+router.afterEach((to) => applyTitle(to));
+router.isReady().then(() => applyTitle(router.currentRoute.value));
+
 app.mount('#app');
+

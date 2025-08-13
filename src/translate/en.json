@@ -1,4 +1,9 @@
 {
+  "title": {
+    "home": "Home — Match Generator",
+    "twoVsTwo": "Combinations 2 vs 2 — Match Generator",
+    "about": "About — Match Generator"
+  },
   "nav":{
     "home":"Generate combinations",
     "about":"About",

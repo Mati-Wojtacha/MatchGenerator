@@ -31,13 +31,24 @@
                 </button>
                 <div v-if="showLocaleMenu" class="buttons-container-langSwitcher">
                   <div v-for="locale in $i18n.availableLocales" :key="locale">
-                    <button class="btn btn-secondary" @click="setLocale(locale)" style="width: 65px;">
-                      <img :src="require('@/../public/flags_icons/'+locale+'.svg')" :alt="'flag_'+locale" style="width: 20px;">
-                   </button>
+                    <button
+                        class="btn btn-secondary lang-btn"
+                        :class="{ active: isCurrent(locale) }"
+                        @click="setLocaleLanguage(locale)"
+                        style="width: 65px;"
+                    >
+                      <img
+                          :src="require('@/../public/flags_icons/'+locale+'.svg')"
+                          :alt="'flag_'+locale"
+                          style="width: 20px;"
+                      >
+
+                    </button>
                   </div>
                 </div>
               </div>
             </li>
+
           </ul>
 
         </div>
@@ -77,7 +88,6 @@ export default {
       dateFromToken: null,
       isDark: useDark(),
       showLocaleMenu: false,
-
     }
   },
 
@@ -95,10 +105,18 @@ export default {
     toggleLocaleMenu() {
       this.showLocaleMenu = !this.showLocaleMenu;
     },
-    setLocale(locale) {
+    setLocaleLanguage(locale) {
       this.$i18n.locale = locale;
       this.showLocaleMenu = false;
+      this.$nextTick(() => {
+        const key = this.$route.meta?.titleKey || 'title.home';
+        document.title = this.$t(key);
+        document.documentElement.setAttribute('lang', locale);
+      });
     },
+    isCurrent(locale) {
+      return this.$i18n.locale === locale;
+    }
   }
 }
 </script>
@@ -167,6 +185,15 @@ export default {
   max-height: 200px;
   overflow: auto;
   top: 100%;
+}
+
+.dark .buttons-container-langSwitcher .btn.lang-btn.active {
+  background-color: rgba(255, 255, 255, 0.87);
+}
+
+.buttons-container-langSwitcher .btn.lang-btn.active {
+  background-color: rgba(20, 20, 20, 0.98);
+  transform: translateY(-1px);
 }
 
 </style>
