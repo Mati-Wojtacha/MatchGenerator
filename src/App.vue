@@ -11,7 +11,6 @@
         <a class="mr-auto text-center mx-auto" href="#">
           <img :src="require('@/../public/logo.webp')" height="50" id="logo" alt="logo">
         </a>
-
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navigate navbar-nav mr-auto text-center mx-auto">
             <li class="navigate-item nav-item">
@@ -47,9 +46,7 @@
                 </div>
               </div>
             </li>
-
           </ul>
-
         </div>
         <div style="position: absolute; right: 0; top: 15px;">
           <div class="theme-switch-wrapper">
@@ -63,8 +60,6 @@
           </div>
 
         </div>
-
-
       </div>
     </nav>
   </header>
@@ -185,11 +180,9 @@ export default {
   overflow: auto;
   top: 100%;
 }
-
 .dark .buttons-container-langSwitcher .btn.lang-btn.active {
   background-color: rgba(255, 255, 255, 0.87);
 }
-
 .buttons-container-langSwitcher .btn.lang-btn.active {
   background-color: rgba(20, 20, 20, 0.98);
   transform: translateY(-1px);
