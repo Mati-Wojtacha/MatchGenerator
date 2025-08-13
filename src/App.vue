@@ -42,7 +42,6 @@
                           :alt="'flag_'+locale"
                           style="width: 20px;"
                       >
-
                     </button>
                   </div>
                 </div>
